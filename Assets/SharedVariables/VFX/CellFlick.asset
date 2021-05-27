@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e70e4b2477b29d489c50a10da73a330, type: 3}
+  m_Name: CellFlick
+  m_EditorClassIdentifier: 
+  effect: {fileID: 7181435301240503134, guid: 78e5af2cff8dfbc4eaa85796905d6b6e, type: 3}
+  sound: {fileID: 8300000, guid: 1cedb9d98ff44bd439410a03a3c5463e, type: 3}

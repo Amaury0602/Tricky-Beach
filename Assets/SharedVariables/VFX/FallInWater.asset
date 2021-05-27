@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e70e4b2477b29d489c50a10da73a330, type: 3}
+  m_Name: FallInWater
+  m_EditorClassIdentifier: 
+  effect: {fileID: 7210141110439055082, guid: 4a5d00fa18abc5a42a261c01df9f590e, type: 3}
+  sound: {fileID: 8300000, guid: 539f37dd7147a1e4f86e52ffbaebb7b8, type: 3}

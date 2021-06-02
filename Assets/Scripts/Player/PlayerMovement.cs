@@ -2,7 +2,8 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class PlayerInput : MonoBehaviour
+[RequireComponent(typeof(PlayerController))]
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private FloatVariable moveOffset;
@@ -12,6 +13,7 @@ public class PlayerInput : MonoBehaviour
     private Animator anim;
     private FallDetection fallDetection;
     private PlayerSounds playerSounds;
+    private PlayerController playerController;
 
     [SerializeField] AnimationCurve jumpEase;
 
@@ -26,10 +28,6 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private LocalEvent onJumpBubbles;
     [SerializeField] private LocalEvent onTeleport;
 
-    //touch inputs 
-    private Vector2 firstTouchPosition;
-    [SerializeField] private float minSwipeDelta;
-
     //interactions
     private bool isSliding = false;
     private bool alive;
@@ -39,7 +37,7 @@ public class PlayerInput : MonoBehaviour
     private bool waterSplashed;
 
     //movement AND rotation
-    private Orientation orientation;
+    public Orientation orientation;
     private Vector3 nextPoint;
     private Vector3 direction;
     private bool reachedNextPoint;
@@ -62,8 +60,6 @@ public class PlayerInput : MonoBehaviour
     {
         if (alive)
         {
-            if (reachedNextPoint) RegisterMovementInputs();
-
             float actualSpeed = isSliding ? moveSpeed * 1.5f : moveSpeed;
             transform.position = Vector3.MoveTowards(transform.position, nextPoint, actualSpeed * Time.deltaTime);
         }
@@ -83,54 +79,9 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    private Vector2 SwipeDirection()
+    public void MoveToNextCell(Orientation or, float inputDir)
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            firstTouchPosition = Input.mousePosition;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            Vector2 touchDelta = (Vector2)Input.mousePosition - firstTouchPosition;
-            return touchDelta;
-        } else
-        {
-            return Vector2.zero;
-        }
-    }
-
-    private void RegisterMovementInputs()
-    {
-        if (orientation == Orientation.Vertical)
-        {
-            if (Input.GetAxisRaw("Horizontal") != 0)
-            {
-                MoveToNextCell(orientation, Input.GetAxisRaw("Horizontal"));
-            }
-
-            if (Mathf.Abs(SwipeDirection().x) > minSwipeDelta)
-            {
-                float dir = SwipeDirection().x > 0 ? 1 : -1;
-                MoveToNextCell(orientation, dir);
-            }
-        }
-        else
-        {
-            if (Input.GetAxisRaw("Vertical") != 0)
-            {
-                MoveToNextCell(orientation, Input.GetAxisRaw("Vertical"));
-            }
-
-            if (Mathf.Abs(SwipeDirection().y) > minSwipeDelta)
-            {
-                float dir = SwipeDirection().y > 0 ? 1 : -1;
-                MoveToNextCell(orientation, dir);
-            }
-        }
-    }
-
-    private void MoveToNextCell(Orientation or, float inputDir)
-    {
+        if (!reachedNextPoint) return;
         anim.SetFloat("Speed", 1);
         onHideArrows.Raise();
         reachedNextPoint = false;
@@ -331,10 +282,10 @@ public class PlayerInput : MonoBehaviour
         anim.SetTrigger("Fall");
         yield return new WaitForSeconds(0.7f);
         fall = true;
-    }
+    }   
+}
 
-    private enum Orientation
-    {
-        Vertical, Horizontal
-    }
+public enum Orientation
+{
+    Vertical, Horizontal
 }

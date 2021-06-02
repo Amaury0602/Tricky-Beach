@@ -2,7 +2,7 @@
 
 public class FallDetection : MonoBehaviour
 {
-    private PlayerInput player;
+    private PlayerMovement player;
     [SerializeField] private Transform[] detectors = new Transform[2];
     [SerializeField] private LayerMask groundLayer;
     private bool isDetecting;
@@ -11,7 +11,7 @@ public class FallDetection : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<PlayerInput>();
+        player = GetComponent<PlayerMovement>();
         isDetecting = false;
         isFalling = false;
     }

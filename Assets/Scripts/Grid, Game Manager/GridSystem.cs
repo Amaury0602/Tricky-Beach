@@ -6,7 +6,7 @@ using DG.Tweening;
 public class GridSystem : MonoBehaviour
 {
     [SerializeField] private GameObject cellPrefab;
-    private float cellSize = 0;
+    private Vector3 cellSize = Vector3.zero;
     private float zPos = 7;
     private float xPos = 0;
     [SerializeField] private FloatVariable cellOffset; // must be a floatVariable shared with the player movement
@@ -71,7 +71,7 @@ public class GridSystem : MonoBehaviour
         {
             Cell cell = Instantiate(cellPrefab, transform).GetComponent<Cell>();
             activeCellList.Add(cell);
-            if (cellSize == 0) cellSize = cell.GetComponent<Renderer>().bounds.size.y;
+            if (cellSize == Vector3.zero) cellSize = cell.GetComponent<Renderer>().bounds.size;
             switch (cellProp.Value)
             {
                 case CellType.W:
@@ -159,7 +159,7 @@ public class GridSystem : MonoBehaviour
     {
         Vector3 pos = new Vector3(
             cellPosition.x,
-            cellSize,
+            cellSize.y,
             cellPosition.z
             );
         return pos;
@@ -170,7 +170,15 @@ public class GridSystem : MonoBehaviour
         var bounds = new Bounds();
         foreach (var cellPosition in cellProperties.Keys)
         {
-            bounds.Encapsulate(cellPosition);
+            //bounds.Encapsulate(cellPosition);
+            bounds.Encapsulate(new Vector2(cellPosition.x - cellSize.x, cellPosition.z - cellSize.z));
+
+            bounds.Encapsulate(new Vector2(cellPosition.x + cellSize.x, cellPosition.z + cellSize.z));
+            
+            
+            // diagUp = position + cellsize extents
+            // diagDown = position - cellsize extents
+            // sizeToAdd = diagUp - diagDown;
         }
         return bounds;
     }

@@ -37,7 +37,8 @@ public class CameraController : MonoBehaviour
         if (mode == CamMode.Game)
         {
             cam.DOOrthoSize(Mathf.Clamp(newOrthSize, 12.5f, 17.5f), 0.2f);
-        } else
+        }
+        else
         {
             cam.DOOrthoSize(Mathf.Clamp(newOrthSize, 10f, 12f), 0.2f);
         }

@@ -980,6 +980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3235395535379839303}
+  - component: {fileID: 777876575}
   - component: {fileID: 3129111574264136503}
   - component: {fileID: 6391317341281823011}
   - component: {fileID: 3129111574264136502}
@@ -1013,6 +1014,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &777876575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2859152119884375037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a78d3c75b489cb4ca881ce941696be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSwipeDelta: 100
 --- !u!114 &3129111574264136503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,7 +1088,7 @@ MonoBehaviour:
   onWaterSplash: {fileID: 11400000, guid: 952c45a61c4d6b3498e65e1cb79a82d4, type: 2}
   onJumpBubbles: {fileID: 11400000, guid: 4bda5ca5d83fe9b4b90818da7d052c97, type: 2}
   onTeleport: {fileID: 11400000, guid: 17d68710fc8bec54b97a21834f0a0152, type: 2}
-  minSwipeDelta: 100
+  orientation: 0
 --- !u!114 &6391317341281823011
 MonoBehaviour:
   m_ObjectHideFlags: 0
